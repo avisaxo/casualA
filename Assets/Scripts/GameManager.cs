@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
             levels[0] = true;
             CreateLevel0();
         }
-
         hud.SetGameOver(GameOver);
     }
 
