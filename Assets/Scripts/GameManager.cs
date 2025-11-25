@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public List<bool> levels;
     public CameraFollowSmooth cameraFollow;
     public PowerUpManager powerUpManager;
-    //private ManagerEnemies managerEnemies;
+    
     private Player auxPlayer;
     private float tiempoCreationFinish = 200f;
     private float particionTimer;
