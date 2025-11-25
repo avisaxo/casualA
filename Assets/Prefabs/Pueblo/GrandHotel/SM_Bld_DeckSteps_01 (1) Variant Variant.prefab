@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8416597231375555133
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1415337689417550787, guid: 4f098c6a29cdd364a8f72e17f5dc8095, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415337689417550787, guid: 4f098c6a29cdd364a8f72e17f5dc8095, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.769
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415337689417550787, guid: 4f098c6a29cdd364a8f72e17f5dc8095, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.383
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415337689417550787, guid: 4f098c6a29cdd364a8f72e17f5dc8095, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415337689417550787, guid: 4f098c6a29cdd364a8f72e17f5dc8095, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415337689417550787, guid: 4f098c6a29cdd364a8f72e17f5dc8095, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415337689417550787, guid: 4f098c6a29cdd364a8f72e17f5dc8095, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415337689417550787, guid: 4f098c6a29cdd364a8f72e17f5dc8095, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415337689417550787, guid: 4f098c6a29cdd364a8f72e17f5dc8095, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415337689417550787, guid: 4f098c6a29cdd364a8f72e17f5dc8095, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415337689417550787, guid: 4f098c6a29cdd364a8f72e17f5dc8095, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1419614748754553487, guid: 4f098c6a29cdd364a8f72e17f5dc8095, type: 3}
+      propertyPath: m_Name
+      value: SM_Bld_DeckSteps_01 (1) Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4f098c6a29cdd364a8f72e17f5dc8095, type: 3}

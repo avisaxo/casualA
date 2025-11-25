@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5320605714848001855
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1773980324640446, guid: 2350092dab2555d48a660d5439d82826, type: 3}
+      propertyPath: m_Name
+      value: SM_Prop_Milk_Container_01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707029914767858, guid: 2350092dab2555d48a660d5439d82826, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707029914767858, guid: 2350092dab2555d48a660d5439d82826, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.381
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707029914767858, guid: 2350092dab2555d48a660d5439d82826, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.042
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707029914767858, guid: 2350092dab2555d48a660d5439d82826, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -23.946
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707029914767858, guid: 2350092dab2555d48a660d5439d82826, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.89068943
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707029914767858, guid: 2350092dab2555d48a660d5439d82826, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707029914767858, guid: 2350092dab2555d48a660d5439d82826, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.45461228
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707029914767858, guid: 2350092dab2555d48a660d5439d82826, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2350092dab2555d48a660d5439d82826, type: 3}

@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3774335734849061406
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1150975052104182, guid: 827cdc91ce656b54e907953e440024d0, type: 3}
+      propertyPath: m_Name
+      value: SM_Prop_Fence_Stick_01 (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365054245417938, guid: 827cdc91ce656b54e907953e440024d0, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365054245417938, guid: 827cdc91ce656b54e907953e440024d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5551969
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365054245417938, guid: 827cdc91ce656b54e907953e440024d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365054245417938, guid: 827cdc91ce656b54e907953e440024d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -84.552
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365054245417938, guid: 827cdc91ce656b54e907953e440024d0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.09812145
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365054245417938, guid: 827cdc91ce656b54e907953e440024d0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.028358757
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365054245417938, guid: 827cdc91ce656b54e907953e440024d0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9946892
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365054245417938, guid: 827cdc91ce656b54e907953e440024d0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.012700395
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 827cdc91ce656b54e907953e440024d0, type: 3}

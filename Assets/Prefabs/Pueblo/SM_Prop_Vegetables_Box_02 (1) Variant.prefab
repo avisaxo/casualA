@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &486855422783285523
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1176333402219506, guid: ca7908ed2ea2d53419583aaf931a7c06, type: 3}
+      propertyPath: m_Name
+      value: SM_Prop_Vegetables_Box_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737426707426240, guid: ca7908ed2ea2d53419583aaf931a7c06, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737426707426240, guid: ca7908ed2ea2d53419583aaf931a7c06, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.973
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737426707426240, guid: ca7908ed2ea2d53419583aaf931a7c06, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.175
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737426707426240, guid: ca7908ed2ea2d53419583aaf931a7c06, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -43.502
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737426707426240, guid: ca7908ed2ea2d53419583aaf931a7c06, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.686526
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737426707426240, guid: ca7908ed2ea2d53419583aaf931a7c06, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.15654583
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737426707426240, guid: ca7908ed2ea2d53419583aaf931a7c06, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.692921
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737426707426240, guid: ca7908ed2ea2d53419583aaf931a7c06, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.15503582
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ca7908ed2ea2d53419583aaf931a7c06, type: 3}
