@@ -43,41 +43,41 @@ public class Player : MonoBehaviour
             return; 
         }
         
-        // #if UNITY_ANDROID || UNITY_IOS
-        //         if (Input.touchCount > 0)
-        //         {
-        //             Touch toque = Input.GetTouch(0);
-        //
-        //             // Detectar movimiento horizontal y vertical
-        //             Vector2 delta = toque.deltaPosition;
-        //
-        //             if (toque.phase == TouchPhase.Stationary || toque.phase == TouchPhase.Moved)
-        //             {
-        //                 // Mover izquierda/derecha según lado de pantalla
-        //                 if (toque.position.x < Screen.width / 2f && transform.position.x > -4f)
-        //                 {
-        //                     transform.Translate(Vector3.left * velocidad * Time.deltaTime);
-        //                 }
-        //                 else if (toque.position.x >= Screen.width / 2f && transform.position.x < 4f)
-        //                 {
-        //                     transform.Translate(Vector3.right * velocidad * Time.deltaTime);
-        //                 }
-        //
-        //                 // 📈 Mover adelante/atrás según desplazamiento del dedo
-        //                 if (Mathf.Abs(delta.y) > 10f) // umbral para evitar ruido de movimiento leve
-        //                 {
-        //                     if (delta.y > 0 && transform.position.z <= 1f)
-        //                     {
-        //                         transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
-        //                     }
-        //                     else if (delta.y < 0 && transform.position.z >= -1f)
-        //                     {
-        //                         transform.Translate(Vector3.back * velocidad * Time.deltaTime);
-        //                     }
-        //                 }
-        //             }
-        //         }
-        // #endif
+        #if UNITY_ANDROID || UNITY_IOS
+                if (Input.touchCount > 0)
+                {
+                    Touch toque = Input.GetTouch(0);
+        
+                    // Detectar movimiento horizontal y vertical
+                    Vector2 delta = toque.deltaPosition;
+        
+                    if (toque.phase == TouchPhase.Stationary || toque.phase == TouchPhase.Moved)
+                    {
+                        // Mover izquierda/derecha según lado de pantalla
+                        if (toque.position.x < Screen.width / 2f && transform.position.x > -4f)
+                        {
+                            transform.Translate(Vector3.left * velocidad * Time.deltaTime);
+                        }
+                        else if (toque.position.x >= Screen.width / 2f && transform.position.x < 4f)
+                        {
+                            transform.Translate(Vector3.right * velocidad * Time.deltaTime);
+                        }
+        
+                        // 📈 Mover adelante/atrás según desplazamiento del dedo
+                        if (Mathf.Abs(delta.y) > 10f) // umbral para evitar ruido de movimiento leve
+                        {
+                            if (delta.y > 0 && transform.position.z <= 1f)
+                            {
+                                transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
+                            }
+                            else if (delta.y < 0 && transform.position.z >= -1f)
+                            {
+                                transform.Translate(Vector3.back * velocidad * Time.deltaTime);
+                            }
+                        }
+                    }
+                }
+        #endif
         
         if (isPlayerActive)
         {
