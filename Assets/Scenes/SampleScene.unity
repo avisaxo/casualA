@@ -782,6 +782,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: {fileID: 0}
   numberLevel: 0
+  jsonConfigLevel0: Config/Level0
+  jsonConfigLevel1: Config/Level1
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

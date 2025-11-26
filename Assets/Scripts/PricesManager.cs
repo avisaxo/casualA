@@ -13,6 +13,7 @@ public class PricesManager : MonoBehaviour
     public GameManager gameManager;
     public ManagerEnemies managerEnemmies;
     private LevelConfig currentLevelConfig;
+    public Configuration configuration;
     
     private const float StackHeight = 2.09f;
     private const float BaseOffset = 0.5f;
@@ -20,7 +21,7 @@ public class PricesManager : MonoBehaviour
     void Start()
     {
         prizes = new List<Prize>();
-        LoadLevelConfig("Config/Level1"); 
+        LoadLevelConfig(configuration.numberLevel == 0 ? configuration.jsonConfigLevel0 : configuration.jsonConfigLevel1); 
     }
     
     private void LoadLevelConfig(string fileName)

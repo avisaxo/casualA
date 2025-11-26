@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
         if (configuration.numberLevel != 1)
         {
             var manager = Instantiate(prizesMManager);
+            manager.configuration = configuration;
             manager.gameManager = this;
             //manager.initPosition = currentLevel.initPosition;
             manager.finalPosition = currentLevel.finalPosition;
@@ -105,10 +106,7 @@ public class GameManager : MonoBehaviour
 
     public void CreatePlayerPoints() => auxPlayer.CreatePlayerpoint();
 
-    public void CreateLaserShot()
-    {
-        powerUpManager.ShowPowerUp();
-    }
+    public void CreateLaserShot() => powerUpManager.ShowPowerUp();
 
     public void CreateMissile()
     {
