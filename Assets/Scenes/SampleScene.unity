@@ -781,7 +781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: {fileID: 0}
-  numberLevel: 0
+  numberLevel: 1
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
