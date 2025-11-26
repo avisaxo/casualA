@@ -82,14 +82,13 @@ public class GameManager : MonoBehaviour
         // Price Manager create
         if (configuration.numberLevel != 1)
         {
-            PricesManager manager = Instantiate(prizesMManager);
+            var manager = Instantiate(prizesMManager);
             manager.gameManager = this;
-            manager.initPosition = currentLevel.initPosition;
+            //manager.initPosition = currentLevel.initPosition;
             manager.finalPosition = currentLevel.finalPosition;
             manager.player = auxPlayer;
             manager.managerEnemmies = managerEnemies;   
         }
-        //--------------------
 
         if (cameraFollow != null)
         {
