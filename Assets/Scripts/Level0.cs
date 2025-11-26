@@ -15,6 +15,7 @@ public class Level0 : MonoBehaviour
     public List<GameObject> missilesPointsTarguet;
     public GameObject MissilePrefab;
     public GameObject explosion;
+    public GameObject obstacleBrick;
 
     public void CreateProgresBar()
     {

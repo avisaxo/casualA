@@ -24,6 +24,7 @@ public class Hud : MonoBehaviour
         UpdateCoinsView();
         ValidateGameOver();
         powerUpManager.UpdatePowerUp(totalPoints);
+        powerUpManager.SecondUpdatePowerUp(totalPoints);
     }
     
 

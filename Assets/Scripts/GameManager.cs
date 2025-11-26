@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public List<bool> levels;
     public CameraFollowSmooth cameraFollow;
     public PowerUpManager powerUpManager;
+    public GameObject brickObstacle;
     //private ManagerEnemies managerEnemies;
     private Player auxPlayer;
     private float tiempoCreationFinish = 200f;
@@ -30,6 +31,8 @@ public class GameManager : MonoBehaviour
             CreateLevel0();
         }
         hud.SetGameOver(GameOver);
+        brickObstacle = currentLevel.obstacleBrick;
+        currentLevel.obstacleBrick.GetComponent<BrickObstacle>().gameManager = this;
     }
 
     private void GameOver(bool isWin)
@@ -52,6 +55,11 @@ public class GameManager : MonoBehaviour
             var progress = tiempoActual / tiempoCreationFinish;
             //hud.SetTimeBar(progress);
         }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            CreateTowers();
+        }
     }
 
     void CreateLevels() => levels.Add(false);
@@ -63,12 +71,14 @@ public class GameManager : MonoBehaviour
         managerEnemies.hud = hud;
         managerEnemies.positionEnemy = currentLevel.positionEnemy;
         currentLevel.managerEnemies = managerEnemies;
+        // Price Manager create
         PricesManager manager = Instantiate(prizesMManager);
         manager.gameManager = this;
         manager.initPosition = currentLevel.initPosition;
         manager.finalPosition = currentLevel.finalPosition;
         manager.player = auxPlayer;
         manager.managerEnemmies = managerEnemies;
+        //--------------------
 
         if (cameraFollow != null)
         {
@@ -93,5 +103,16 @@ public class GameManager : MonoBehaviour
     public void CreateMissile()
     {
         currentLevel.FireMissileToTarguet();
+    }
+
+    public void BrickActive()
+    {
+        brickObstacle.SetActive(true);
+        brickObstacle.GetComponent<BrickObstacle>().StartDelayAction();
+    }
+
+    public void MoveEnemies()
+    {
+        managerEnemies.MoveEnemies();
     }
 }

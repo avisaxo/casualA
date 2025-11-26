@@ -9,6 +9,7 @@ TagManager:
   - PrizeA
   - Tower
   - Missile
+  - Brik
   layers:
   - Default
   - TransparentFX

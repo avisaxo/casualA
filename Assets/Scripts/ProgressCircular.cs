@@ -33,6 +33,7 @@ public class ProgressCircular : MonoBehaviour
         // La duración total del relleno es de 5.0 segundos.
         //Invoke("StartFill", 2.0f); 
         //StartGreenFill(2.0f);
+        StartFill();
     }
 
     void StartFill()

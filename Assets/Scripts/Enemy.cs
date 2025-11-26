@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     public Player player;
     public ManagerEnemies managerEnemy;
     public Animator animator;
-    private bool isMove;
+    public bool isMove;
     private AnimatorStateInfo stateInfo;
     public GameObject coin;
     public Hud hud;
@@ -38,6 +38,11 @@ public class Enemy : MonoBehaviour
                 Debug.Log("🎬 La animación terminó");
             }
         }
+
+        if (!isMove && !isBoss)
+        {
+            Debug.Log("Se detubo");
+        }
     }
 
     public void OnTriggerStay(Collider other)
@@ -54,6 +59,10 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Missile")
         {
             Debug.Log("Colisiono contra el missile Enter");
+            DestroyEnemy();
+        }
+        else if ((other.tag == "Brik") && !isBoss)
+        {
             DestroyEnemy();
         }
     }

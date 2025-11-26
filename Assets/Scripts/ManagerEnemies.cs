@@ -43,7 +43,7 @@ public class ManagerEnemies : MonoBehaviour
 
     void Crear()
     {
-        float prandomPos = Random.Range(-4f, 1.5f);
+        float prandomPos = Random.Range(-4f, 4f);
         Vector3 posDef = new Vector3(prandomPos, positionEnemy.position.y, positionEnemy.position.z);
         GameObject enemy = Instantiate(enemyA, posDef, Quaternion.identity);
         enemy.transform.parent = gameObject.transform;
@@ -55,13 +55,21 @@ public class ManagerEnemies : MonoBehaviour
 
     private void CreateBoos()
     {
-        var randomPos = Random.Range(-4f, 1f);
+        var randomPos = Random.Range(-4f, 4f);
         var posDef = new Vector3(randomPos, positionEnemy.position.y, positionEnemy.position.z);
         //var enemy = Instantiate(enemyBossA, posDef, Quaternion.identity);
         var enemy = Instantiate(enemyBossA, posDef, enemyBossA.transform.rotation);
         enemy.GetComponent<Enemy>().player = player;
         enemy.GetComponent<Enemy>().managerEnemy = this;
         enemies.Add(enemy);
+    }
+
+    public void MoveEnemies()
+    {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            enemies[i].GetComponent<Enemy>().isMove = true;
+        }
     }
 
     public void DestroyEnemy(Enemy enemy)
