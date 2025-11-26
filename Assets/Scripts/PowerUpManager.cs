@@ -17,7 +17,7 @@ public class PowerUpManager : MonoBehaviour
     public GameObject secondEnablePowerUpGameObject;
     public GameManager gameManager;
     private const int CoinsNeeded = 40;
-    private const int secondCoinsNeeded = 100;
+    private const int secondCoinsNeeded = 60;
     public GameObject brickObject;
 
     // Start is called before the first frame update

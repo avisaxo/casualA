@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
             Debug.Log("Colisiono contra el missile Enter");
             DestroyEnemy();
         }
-        else if ((other.tag == "Brik") && !isBoss)
+        else if (other.tag == "Brik" && !isBoss)
         {
             DestroyEnemy();
         }

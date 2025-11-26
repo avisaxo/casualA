@@ -16,6 +16,7 @@ public class ManagerEnemies : MonoBehaviour
     public List<GameObject> enemies;
     public bool isCreationActive;
     public Hud hud;
+    public Configuration configuration;
 
     private void Start()
     {
@@ -43,8 +44,13 @@ public class ManagerEnemies : MonoBehaviour
 
     void Crear()
     {
-        float prandomPos = Random.Range(-4f, 4f);
-        Vector3 posDef = new Vector3(prandomPos, positionEnemy.position.y, positionEnemy.position.z);
+        float randomPos = 0.0f;
+        if(configuration.numberLevel == 0)
+            randomPos = Random.Range(-4f, 1f);
+        else if(configuration.numberLevel == 1)
+            randomPos = Random.Range(-4f, 4f);
+        
+        Vector3 posDef = new Vector3(randomPos, positionEnemy.position.y, positionEnemy.position.z);
         GameObject enemy = Instantiate(enemyA, posDef, Quaternion.identity);
         enemy.transform.parent = gameObject.transform;
         enemy.GetComponent<Enemy>().player = player;
@@ -55,7 +61,12 @@ public class ManagerEnemies : MonoBehaviour
 
     private void CreateBoos()
     {
-        var randomPos = Random.Range(-4f, 4f);
+        float randomPos = 0.0f;
+        if(configuration.numberLevel == 0)
+            randomPos = Random.Range(-4f, 1f);
+        else if(configuration.numberLevel == 1)
+            randomPos = Random.Range(-4f, 4f);
+        
         var posDef = new Vector3(randomPos, positionEnemy.position.y, positionEnemy.position.z);
         //var enemy = Instantiate(enemyBossA, posDef, Quaternion.identity);
         var enemy = Instantiate(enemyBossA, posDef, enemyBossA.transform.rotation);

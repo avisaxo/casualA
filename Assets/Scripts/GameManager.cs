@@ -4,16 +4,17 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Level0 level0;
+    public Level0 level1;
     public Level0 currentLevel;
     public Player player;
     public ManagerEnemies managerEnemies;
     public PricesManager prizesMManager;
     public Hud hud;
-    public List<bool> levels;
+    [SerializeField] public List<bool> levels;
     public CameraFollowSmooth cameraFollow;
     public PowerUpManager powerUpManager;
     public GameObject brickObstacle;
-    //private ManagerEnemies managerEnemies;
+    [SerializeField] public Configuration configuration;
     private Player auxPlayer;
     private float tiempoCreationFinish = 200f;
     private float particionTimer;
@@ -22,7 +23,13 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         particionTimer = tiempoCreationFinish / 100;
-        currentLevel = Instantiate(level0);
+        if (configuration.numberLevel == 0)
+        {
+            currentLevel = Instantiate(level0);
+        } else if (configuration.numberLevel == 1)
+        {
+            currentLevel = Instantiate(level1);
+        }
         levels = new List<bool>();
         CreateLevels();
         if (!levels[0])
@@ -68,16 +75,20 @@ public class GameManager : MonoBehaviour
     {
         auxPlayer = Instantiate(player);
         managerEnemies = Instantiate(managerEnemies);
+        managerEnemies.configuration = configuration;
         managerEnemies.hud = hud;
         managerEnemies.positionEnemy = currentLevel.positionEnemy;
         currentLevel.managerEnemies = managerEnemies;
         // Price Manager create
-        PricesManager manager = Instantiate(prizesMManager);
-        manager.gameManager = this;
-        manager.initPosition = currentLevel.initPosition;
-        manager.finalPosition = currentLevel.finalPosition;
-        manager.player = auxPlayer;
-        manager.managerEnemmies = managerEnemies;
+        if (configuration.numberLevel != 1)
+        {
+            PricesManager manager = Instantiate(prizesMManager);
+            manager.gameManager = this;
+            manager.initPosition = currentLevel.initPosition;
+            manager.finalPosition = currentLevel.finalPosition;
+            manager.player = auxPlayer;
+            manager.managerEnemmies = managerEnemies;   
+        }
         //--------------------
 
         if (cameraFollow != null)

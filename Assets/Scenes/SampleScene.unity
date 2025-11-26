@@ -721,6 +721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 911475153}
   - component: {fileID: 911475152}
+  - component: {fileID: 911475154}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -741,6 +742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level0: {fileID: 5385273409508333728, guid: 7e9b819f61e794de3999238b7d0c928f, type: 3}
+  level1: {fileID: 5385273409508333728, guid: c494b532f202547b3924edd715345a83, type: 3}
   currentLevel: {fileID: 0}
   player: {fileID: 1546858026513585484, guid: 700f34809c4be45798194278143ab9b5, type: 3}
   managerEnemies: {fileID: 956751684313558756, guid: 96cd2db6110d342fc849ce5f3bce4d3c, type: 3}
@@ -750,6 +752,7 @@ MonoBehaviour:
   cameraFollow: {fileID: 0}
   powerUpManager: {fileID: 585789021}
   brickObstacle: {fileID: 0}
+  configuration: {fileID: 911475154}
 --- !u!4 &911475153
 Transform:
   m_ObjectHideFlags: 0
@@ -765,6 +768,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &911475154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911475151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d7272f3e85242e3843fd52ef5f3366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLevel: {fileID: 0}
+  numberLevel: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
