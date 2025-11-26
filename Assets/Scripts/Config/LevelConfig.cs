@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Enums;
 
 namespace Config
 {    
@@ -14,7 +15,7 @@ namespace Config
     [Serializable]
     public class PrizeDropConfig
     {        
-        public Enums.PrizesType PrizeType;
+        public PrizesType PrizeType;
         public int RequiredHits;
         public bool IsFinalPrize = false; 
     }

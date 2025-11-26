@@ -8,42 +8,42 @@
 
   "PrizeDrops": [
     {
-      "PrizeType": "PlayerPoints",
+      "PrizeType": 2,
       "RequiredHits": 5,
       "IsFinalPrize": false
     },
     {
-      "PrizeType": "BulletSpeed",
+      "PrizeType": 1,
       "RequiredHits": 10,
       "IsFinalPrize": false
     },
     {
-      "PrizeType": "PlayerPoints",
+      "PrizeType": 2,
       "RequiredHits": 20,
       "IsFinalPrize": false
     },
     {
-      "PrizeType": "PlayerPoints",
+      "PrizeType": 2,
       "RequiredHits": 40,
       "IsFinalPrize": false
     },
     {
-      "PrizeType": "BulletSpeed",
+      "PrizeType": 1,
       "RequiredHits": 80,
       "IsFinalPrize": false
     },
     {
-      "PrizeType": "Tower",
+      "PrizeType": 0,
       "RequiredHits": 160,
       "IsFinalPrize": false
     },
     {
-      "PrizeType": "LaserShot",
+      "PrizeType": 3,
       "RequiredHits": 320,
       "IsFinalPrize": false
     },
     {
-      "PrizeType": "WinCondition",
+      "PrizeType": 4,
       "RequiredHits": 700,
       "IsFinalPrize": true
     }

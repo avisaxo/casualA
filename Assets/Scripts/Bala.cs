@@ -35,7 +35,7 @@ public class Bala : MonoBehaviour
         
         if (other.CompareTag("PrizeA"))
         {
-            other.GetComponent<Prize>().RecibirDano(0.05f);
+            other.GetComponent<Prize>().RecibirDano();
         }
 
         InstantiateExplocion();
