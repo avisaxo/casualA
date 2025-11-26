@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public ManagerEnemies managerEnemies;
     public PricesManager prizesMManager;
     public Hud hud;
+    public EndCardView endCardView;
     [SerializeField] public List<bool> levels;
     public CameraFollowSmooth cameraFollow;
     public PowerUpManager powerUpManager;
@@ -17,19 +18,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Configuration configuration;
     private Player auxPlayer;
     private float tiempoCreationFinish = 200f;
-    private float particionTimer;
     private float tiempoActual = 0f;
 
     void Start()
     {
-        particionTimer = tiempoCreationFinish / 100;
-        if (configuration.numberLevel == 0)
+        currentLevel = configuration.numberLevel switch
         {
-            currentLevel = Instantiate(level0);
-        } else if (configuration.numberLevel == 1)
-        {
-            currentLevel = Instantiate(level1);
-        }
+            0 => Instantiate(level0),
+            1 => Instantiate(level1),
+            _ => currentLevel
+        };
+        
         levels = new List<bool>();
         CreateLevels();
         if (!levels[0])
@@ -37,15 +36,45 @@ public class GameManager : MonoBehaviour
             levels[0] = true;
             CreateLevel0();
         }
+        
         hud.SetGameOver(GameOver);
         brickObstacle = currentLevel.obstacleBrick;
         currentLevel.obstacleBrick.GetComponent<BrickObstacle>().gameManager = this;
     }
 
-    private void GameOver(bool isWin)
+    public void GameOver(bool isWin)
     {
         managerEnemies.DestroyAllEnemies();
         auxPlayer.WinAnimation();
+        endCardView.ShowEndCard(hud.GetCoins(), EndCardOptionSelected);
+    }
+
+    private void EndCardOptionSelected(int discountAmount)
+    {
+        hud.ApplyDiscount(discountAmount);
+        RestartLevel();
+    }
+    
+    private void RestartLevel()
+    {
+        currentLevel = configuration.numberLevel switch
+        {
+            0 => Instantiate(level0),
+            1 => Instantiate(level1),
+            _ => currentLevel
+        };
+        
+        levels = new List<bool>();
+        CreateLevels();
+        if (!levels[0])
+        {
+            levels[0] = true;
+            CreateLevel0();
+        }
+        
+        hud.UpdateCoinsView();
+        brickObstacle = currentLevel.obstacleBrick;
+        currentLevel.obstacleBrick.GetComponent<BrickObstacle>().gameManager = this;
     }
 
     private void Update()
@@ -119,8 +148,5 @@ public class GameManager : MonoBehaviour
         brickObstacle.GetComponent<BrickObstacle>().StartDelayAction();
     }
 
-    public void MoveEnemies()
-    {
-        managerEnemies.MoveEnemies();
-    }
+    public void MoveEnemies() => managerEnemies.MoveEnemies();
 }

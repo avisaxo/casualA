@@ -62,6 +62,7 @@ public class Prize : MonoBehaviour
                     gameManager.CreateLaserShot();
                     break;
                 case PrizesType.WinCondition:
+                    gameManager.GameOver(true);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, "Tipo de premio no manejado en el switch.");

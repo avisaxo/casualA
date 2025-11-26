@@ -43,10 +43,18 @@ public class Hud : MonoBehaviour
         UpdateCoinsView();
     }
 
-    private void UpdateCoinsView()
+    public void UpdateCoinsView()
     {
         pointsText.text = "" + totalPoints;
         var fillPercentage = (float)totalPoints / pointsNeeded;
         barTimer.fillAmount = Mathf.Clamp01(fillPercentage);
+    }
+
+    public int GetCoins() => totalPoints;
+
+    public void ApplyDiscount(int discountAmount)
+    {
+        totalPoints -= discountAmount;
+        UpdateCoinsView();
     }
 }
