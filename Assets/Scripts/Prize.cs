@@ -1,3 +1,4 @@
+using System;
 using Enums;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ public class Prize : MonoBehaviour
     public ManagerEnemies managerEnemies;
     public PrizesType type;
     public Animator controler;
+    public int requiredHits;
 
     private void Start()
     {
@@ -30,21 +32,36 @@ public class Prize : MonoBehaviour
 
     public void RecibirDano(float damage)
     {
-        amount.fillAmount += damage;
+        // Calculamos el valor de salud que representa un golpe
+        // 1.0f / 5 hits = 0.2 de fillAmount por golpe.
+        var damagePerHit = 1.0f / requiredHits;
+    
+        // Sumamos la porción de un golpe
+        amount.fillAmount += damagePerHit;
+    
         controler.SetTrigger("Anim");
-
-        //Debug.Log("damage = " + damage);
 
         if (amount.fillAmount >= 1)
         {
-            if (type == PrizesType.BulletSpeed)
-                player.IncrementCreationBala();
-            if(type == PrizesType.Tower)
-                gameManager.CreateTowers();
-            if (type == PrizesType.PlayerPoints) 
-                gameManager.CreatePlayerPoints();
-            if (type == PrizesType.LaserShot) 
-                gameManager.CreateLaserShot();
+            switch (type)
+            {
+                case PrizesType.BulletSpeed:
+                    player.IncrementCreationBala();
+                    break;
+                case PrizesType.Tower:
+                    gameManager.CreateTowers();
+                    break;
+                case PrizesType.PlayerPoints:
+                    gameManager.CreatePlayerPoints();
+                    break;
+                case PrizesType.LaserShot:
+                    gameManager.CreateLaserShot();
+                    break;
+                case PrizesType.WinCondition:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
             prizeManager.DestroyPrize(this);
         }

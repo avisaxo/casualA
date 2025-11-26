@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Config;
 using Enums;
 using UnityEngine;
 
@@ -16,56 +17,77 @@ public class PricesManager : MonoBehaviour
     public bool isStopPrize;
     public GameManager gameManager;
     public ManagerEnemies managerEnemmies;
+    private LevelConfig currentLevelConfig;
+
     void Start()
     {
         isStopPrize = false;
         prizes = new List<Prize>();
-        prizeCount = 50;
-        pocitionPorcentage = (initPosition.position.z - finalPosition.position.z) / prizeCount;
-        Debug.Log("Porcentaje prize = " + pocitionPorcentage);
-        CreatePrize();
+        LoadLevelConfig("Config/Level1");
+        //pocitionPorcentage = (initPosition.position.z - finalPosition.position.z) / prizeCount;
     }
-
-    void CreatePrize()
+    
+    private void LoadLevelConfig(string fileName)
     {
-        for (var i = 0; i < prizeCount; i++)
+        var jsonText = Resources.Load<TextAsset>(fileName);
+        
+        if (jsonText != null)
         {
+            currentLevelConfig = JsonUtility.FromJson<LevelConfig>(jsonText.text);
+            Debug.Log($"Configuración de nivel '{currentLevelConfig.LevelName}' cargada exitosamente.");
+            
+            if (currentLevelConfig.PrizeDrops.Count != currentLevelConfig.WinCondition.RequiredPrizeCount)
+            {
+                Debug.LogWarning("La lista de premios no coincide con la cantidad necesaria para ganar.");
+            }
+
+            CreatePrices();
+        }
+        else
+        {
+            Debug.LogError($"No se encontró el archivo JSON: {fileName}.");
+        }
+    }
+    
+    void CreatePrices()
+    {
+        var prizeConfigList = currentLevelConfig.PrizeDrops;
+    
+        int realPrizeCount = prizeConfigList.Count;
+        pocitionPorcentage = (initPosition.position.z - finalPosition.position.z) / realPrizeCount;
+    
+        for (var i = 0; i < realPrizeCount; i++)
+        {
+            var config = prizeConfigList[i];
+        
             var pos = new Vector3(0, -0.4f, pocitionPorcentage * i);
-            var prize = Instantiate(prizeA, initPosition.position - pos, Quaternion.Euler(90, 180, 0));
-            prize.transform.parent = gameObject.transform;
-            prize.GetComponent<Prize>().gameManager = gameManager;
-            prize.GetComponent<Prize>().player = player;
-            prize.GetComponent<Prize>().prizeManager = this;
-            prize.GetComponent<Prize>().managerEnemies = managerEnemmies;
-            
-            // if (i == 1 || i == 0)
-            //     prize.GetComponent<Prize>().type = PrizesType.BulletSpeed;
-            // if (i == 2)
-            //     prize.GetComponent<Prize>().type = PrizesType.Tower;
-            // if (i == 4 || i == 3)
-            //     prize.GetComponent<Prize>().type = PrizesType.PlayerPoints;
-            var randomIndex = Random.Range(0, availablePrizes.Count);
-            prize.GetComponent<Prize>().type = availablePrizes[randomIndex];
-            
-            prizes.Add(prize.GetComponent<Prize>());
+            var spawnPosition = initPosition.position - pos; 
+
+            var prizeObject = Instantiate(prizeA, spawnPosition, Quaternion.Euler(90, 180, 0));
+    
+            prizeObject.transform.parent = gameObject.transform;
+            var prizeScript = prizeObject.GetComponent<Prize>();
+        
+            prizeScript.gameManager = gameManager;
+            prizeScript.player = player;
+            prizeScript.prizeManager = this;
+            prizeScript.managerEnemies = managerEnemmies;
+        
+            prizeScript.type = config.PrizeType;
+            prizeScript.requiredHits = config.RequiredHits;
+        
+            prizes.Add(prizeScript);
         }
     }
 
     public void PricesAdvance(bool advance)
     {
-        if (!advance)
-        {
-            for (var i = 0; i < prizes.Count; i++)
-            {
-                prizes[i].Stop();
-            }
+        if (advance) return;
+        foreach (var prize in prizes) prize.Stop();
 
-            if (!isStopPrize)
-            {
-                isStopPrize = true;
-                CreatePrizeDestroyed();
-            }
-        }
+        if (isStopPrize) return;
+        isStopPrize = true;
+        CreatePrizeDestroyed();
     }
 
     public void DestroyPrize(Prize priceDestroy)
@@ -73,21 +95,18 @@ public class PricesManager : MonoBehaviour
         AudioManager.Instance.Play("Crash");
         Destroy(priceDestroy.gameObject);
         prizes.Remove(priceDestroy);
-        for (var i = 0; i < prizes.Count; i++)
-        {
-            prizes[i].Advance();
-        }
+        foreach (var prize in prizes) prize.Advance();
         //CreatePrizeDestroyed();
     }
 
     Vector3 CalculateNextPrize()
     {
-        GameObject objetoMasAdelante = prizes[0].gameObject;
-        float maxZ = prizes[0].gameObject.transform.position.z;
+        var objetoMasAdelante = prizes[0].gameObject;
+        var maxZ = prizes[0].gameObject.transform.position.z;
         
         for (var i = 1; i < prizes.Count; i++)
         {
-            float zActual = prizes[i].transform.position.z;
+            var zActual = prizes[i].transform.position.z;
             if (zActual > maxZ)
             {
                 maxZ = zActual;
@@ -99,22 +118,22 @@ public class PricesManager : MonoBehaviour
 
     void CreatePrizeDestroyed()
     {
-        int countPrize = 6 - prizes.Count;
-        Vector3 currentFirstPos = CalculateNextPrize();
-        for (int i = 0; i < countPrize; i++)
+        var countPrize = 6 - prizes.Count;
+        var currentFirstPos = CalculateNextPrize();
+        for (var i = 0; i < countPrize; i++)
         {
-            Vector3 positionCreate = new Vector3(currentFirstPos.x, currentFirstPos.y, currentFirstPos.z + 6);
-            GameObject prize = Instantiate(prizeA, positionCreate, Quaternion.Euler(-90, 0, 0));
+            var positionCreate = new Vector3(currentFirstPos.x, currentFirstPos.y, currentFirstPos.z + 6);
+            var prize = Instantiate(prizeA, positionCreate, Quaternion.Euler(-90, 0, 0));
             prize.GetComponent<Prize>().gameManager = gameManager;
             prize.GetComponent<Prize>().player = player;
             prize.GetComponent<Prize>().prizeManager = this;
             prize.GetComponent<Prize>().managerEnemies = managerEnemmies;
             
-            if (i == 1 || i == 0)
+            if (i is 1 or 0)
                 prize.GetComponent<Prize>().type = PrizesType.BulletSpeed;
             if (i == 2)
                 prize.GetComponent<Prize>().type = PrizesType.Tower;
-            if (i == 4 || i == 3)
+            if (i is 4 or 3)
                 prize.GetComponent<Prize>().type = PrizesType.PlayerPoints;
             
             prizes.Add(prize.GetComponent<Prize>());

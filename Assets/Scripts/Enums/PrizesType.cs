@@ -5,6 +5,7 @@ namespace Enums
         Tower,
         BulletSpeed,
         PlayerPoints,
-        LaserShot
+        LaserShot,
+        WinCondition
     }
 }

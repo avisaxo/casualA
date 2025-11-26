@@ -1,0 +1,51 @@
+{
+  "LevelName": "Un Nuevo Mundo",
+
+  "WinCondition": {
+    "RequiredPrizeCount": 8,
+    "IsVictoryCondition": true
+  },
+
+  "PrizeDrops": [
+    {
+      "PrizeType": "PlayerPoints",
+      "RequiredHits": 5,
+      "IsFinalPrize": false
+    },
+    {
+      "PrizeType": "BulletSpeed",
+      "RequiredHits": 10,
+      "IsFinalPrize": false
+    },
+    {
+      "PrizeType": "PlayerPoints",
+      "RequiredHits": 20,
+      "IsFinalPrize": false
+    },
+    {
+      "PrizeType": "PlayerPoints",
+      "RequiredHits": 40,
+      "IsFinalPrize": false
+    },
+    {
+      "PrizeType": "BulletSpeed",
+      "RequiredHits": 80,
+      "IsFinalPrize": false
+    },
+    {
+      "PrizeType": "Tower",
+      "RequiredHits": 160,
+      "IsFinalPrize": false
+    },
+    {
+      "PrizeType": "LaserShot",
+      "RequiredHits": 320,
+      "IsFinalPrize": false
+    },
+    {
+      "PrizeType": "WinCondition",
+      "RequiredHits": 700,
+      "IsFinalPrize": true
+    }
+  ]
+}
