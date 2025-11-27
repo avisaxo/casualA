@@ -7,6 +7,7 @@ public class StatsScreen : MonoBehaviour
     public int levelNumber;
     public int countEnemiesDead;
     public int countEnemiesBossDead;
+    public int weaponType;
     
     void Start()
     {

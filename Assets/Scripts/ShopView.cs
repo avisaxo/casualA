@@ -39,12 +39,15 @@ public class ShopView : MonoBehaviour
         switch (option)
         {
             case 1:
+                statsScreen.weaponType = 1;
                 Discount(optionText_1);
                 break;
             case 2:
+                statsScreen.weaponType = 2;
                 Discount(optionText_2);
                 break;
             default:
+                statsScreen.weaponType = 3;
                 Discount(optionText_3);
                 break;
         }
