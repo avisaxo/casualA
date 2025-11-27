@@ -18,12 +18,11 @@ public class Bala : MonoBehaviour
     {
         //Debug.Log("Bala colisionó con: " + other.name);
 
-        Destroy(gameObject);
-
         // Si querés afectar al objeto que tocó:
         if (other.CompareTag("EnemigoBoss"))
         {
             other.GetComponent<Enemy>().RecibirDano(0.05f);
+            Destroy(gameObject);
         }
 
         if (other.CompareTag("Enemigo"))
@@ -31,11 +30,13 @@ public class Bala : MonoBehaviour
             other.gameObject.GetComponent<Enemy>().InstantiateCoin(player);
             other.gameObject.GetComponent<Enemy>().DestroyEnemy();
             Destroy(other.gameObject);
+            Destroy(gameObject);
         }
         
         if (other.CompareTag("PrizeA"))
         {
             other.GetComponent<Prize>().RecibirDano();
+            Destroy(gameObject);
         }
 
         InstantiateExplocion();
