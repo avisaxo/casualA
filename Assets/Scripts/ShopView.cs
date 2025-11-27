@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ShopView : MonoBehaviour
@@ -11,8 +9,13 @@ public class ShopView : MonoBehaviour
     public Animator animator;
     private static readonly int ShowShop = Animator.StringToHash("ShowShop");
     
-    private int _currentMoney;
-    private Action<int> _applyDiscount;
+    private int currentMoney;
+    private StatsScreen statsScreen;
+
+    private void Awake()
+    {
+        statsScreen = GameObject.Find("StatsScreen").GetComponent<StatsScreen>();
+    }
 
     void Start()
     {
@@ -20,15 +23,16 @@ public class ShopView : MonoBehaviour
         option_2.onClick.AddListener(() => SelectOption(2));
         option_3.onClick.AddListener(() => SelectOption(3));
         skip.onClick.AddListener(Skip);
+        currentMoney = statsScreen.coins;
+        moneyText.text = "$" + currentMoney;
         animator.SetTrigger(ShowShop);
     }
 
     private void Skip()
     {
         gameObject.SetActive(false);
-        _applyDiscount?.Invoke(0);
     }
-    
+
     private void SelectOption(int option)
     {
         Debug.Log("Arma seleccionada: " + option);
@@ -54,17 +58,17 @@ public class ShopView : MonoBehaviour
 
         if (int.TryParse(amountString, out int price))
         {
-            if (price <= _currentMoney)
+            if (price <= currentMoney)
             {
-                _currentMoney -= price;
-                moneyText.text = "$" + _currentMoney;
+                currentMoney -= price;
+                moneyText.text = "$" + currentMoney;
                 
-                Debug.Log($"Descuento exitoso. Nuevo saldo: {_currentMoney}");
+                Debug.Log($"Descuento exitoso. Nuevo saldo: {currentMoney}");
+                statsScreen.coins -= price;
                 gameObject.SetActive(false);
-                _applyDiscount?.Invoke(price);
             }
             else
-                Debug.LogWarning($"Saldo insuficiente. Requiere ${price}, tiene ${_currentMoney}.");
+                Debug.LogWarning($"Saldo insuficiente. Requiere ${price}, tiene ${currentMoney}.");
         }
         else
             Debug.LogError($"Error de formato: El texto '{amountText.text}' no es un número válido.");
