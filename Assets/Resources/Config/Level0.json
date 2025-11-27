@@ -39,12 +39,12 @@
     },
     {
       "PrizeType": 3,
-      "RequiredHits": 32,
+      "RequiredHits": 3,
       "IsFinalPrize": false
     },
     {
       "PrizeType": 4,
-      "RequiredHits": 70,
+      "RequiredHits": 7,
       "IsFinalPrize": true
     }
   ]

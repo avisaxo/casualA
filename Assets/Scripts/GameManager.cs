@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     {
         managerEnemies.DestroyAllEnemies();
         auxPlayer.WinAnimation();
-        endCardView.ShowEndCard(hud.GetCoins(), EndCardOptionSelected);
+        endCardView.ShowEndCard();
         statsScreen.SetCoins(hud.GetCoins());
     }
 
