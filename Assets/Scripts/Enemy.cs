@@ -14,19 +14,26 @@ public class Enemy : MonoBehaviour
     private AnimatorStateInfo stateInfo;
     public GameObject coin;
     public Hud hud;
+    public bool obstacle;
 
     private void Start()
     {
         isMove = true;
         velocidad = isBoss ? 2.5f : 1.5f;
+        obstacle = false;
     }
 
     void Update()
     {
         if(isMove && !isBoss)
             transform.Translate(-Vector3.forward * velocidad * Time.deltaTime);
-        else if(isMove)
-            transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
+        else if (isMove)
+        {
+            if (!obstacle)
+            {
+                transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
+            }
+        }
 
         if (!isMove && isBoss)
         {
@@ -61,9 +68,18 @@ public class Enemy : MonoBehaviour
             Debug.Log("Colisiono contra el missile Enter");
             DestroyEnemy();
         }
-        else if (other.tag == "Brik" && !isBoss)
+
+        if (other.tag == "Brik" && isBoss)
         {
-            DestroyEnemy();
+            obstacle = true;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Brik" && isBoss)
+        {
+            obstacle = false;
         }
     }
 
