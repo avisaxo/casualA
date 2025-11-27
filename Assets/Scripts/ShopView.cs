@@ -3,14 +3,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class EndCardView : MonoBehaviour
+public class ShopView : MonoBehaviour
 {
     public Button option_1, option_2, option_3, skip;
     public Text optionText_1, optionText_2, optionText_3;
     public Text moneyText;
     public Animator animator;
     private static readonly int ShowShop = Animator.StringToHash("ShowShop");
-    private static readonly int CloseShopDoor = Animator.StringToHash("CloseShopDoor");
     
     private int _currentMoney;
     private Action<int> _applyDiscount;
@@ -21,22 +20,13 @@ public class EndCardView : MonoBehaviour
         option_2.onClick.AddListener(() => SelectOption(2));
         option_3.onClick.AddListener(() => SelectOption(3));
         skip.onClick.AddListener(Skip);
+        animator.SetTrigger(ShowShop);
     }
 
     private void Skip()
     {
         gameObject.SetActive(false);
         _applyDiscount?.Invoke(0);
-    }
-
-    public void ShowEndCard(int money, Action<int> applyDiscount)
-    {
-        _applyDiscount = applyDiscount;
-        _currentMoney = money;
-        moneyText.text = "$" + money;
-        gameObject.SetActive(true);
-        animator.SetTrigger(CloseShopDoor);
-        SceneManager.LoadScene(2);
     }
     
     private void SelectOption(int option)
