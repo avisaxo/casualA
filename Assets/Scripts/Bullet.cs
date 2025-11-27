@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     private Vector3 moveDirection;
     private float speed;
     public ParticleSystem explocion;
+    public GameManager gameManager;
 
     private void Start()
     {

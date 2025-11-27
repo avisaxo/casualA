@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     public GameObject coin;
     public Hud hud;
     public bool obstacle;
+    public GameManager gameManager;
 
     private void Start()
     {
@@ -40,6 +41,7 @@ public class Enemy : MonoBehaviour
             stateInfo = animator.GetCurrentAnimatorStateInfo(0);
             if (stateInfo.IsName("Die") && stateInfo.normalizedTime >= 1f)
             {
+                gameManager.statsScreen.AddEnemyBossDead();
                 AudioManager.Instance.Play("muerte2");
                 Destroy(gameObject);
                 Debug.Log("🎬 La animación terminó");
@@ -99,6 +101,7 @@ public class Enemy : MonoBehaviour
     public void DestroyEnemy()
     {
         managerEnemy.DestroyEnemy(this);
+        gameManager.statsScreen.AddEnemyDead();
         Destroy(gameObject);
     }
 

@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public float anticipationTime = 1f; 
     [Tooltip("Velocidad suave hacia atrás")]
     public float backwardSpeed = 10f;
+    public GameManager gameManager;
 
     private bool isWinning = false;
 
@@ -117,6 +118,7 @@ public class Player : MonoBehaviour
     void Disparar()
     {
         var balaAux = Instantiate(bala, positionCanon.position, Quaternion.identity);
+        balaAux.GetComponent<Bala>().gameManager = gameManager;
         balaAux.GetComponent<Bala>().player = this;
         AudioManager.Instance.Play("Disparo1");
     }
@@ -161,6 +163,7 @@ public class Player : MonoBehaviour
             var spawnPosition = points[freeSlotIndex].transform.position;
 
             var auxPlayer = Instantiate(auxPlayerPrefabs, spawnPosition, Quaternion.identity);
+            auxPlayer.GetComponent<PlayerAux>().gameManager = gameManager;
             var auxScript = auxPlayer.GetComponent<PlayerAux>();
             
             auxScript.player = this;

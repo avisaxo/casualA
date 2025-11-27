@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,18 +17,34 @@ public class GameManager : MonoBehaviour
     public PowerUpManager powerUpManager;
     public GameObject brickObstacle;
     [SerializeField] public Configuration configuration;
+    public StatsScreen statsScreen;
     private Player auxPlayer;
     private float tiempoCreationFinish = 200f;
     private float tiempoActual = 0f;
 
+    private void Awake()
+    {
+        statsScreen = GameObject.Find("StatsScreen").GetComponent<StatsScreen>();
+    }
+
     void Start()
     {
-        currentLevel = configuration.numberLevel switch
+        switch (configuration.numberLevel)
         {
-            0 => Instantiate(level0),
-            1 => Instantiate(level1),
-            _ => currentLevel
-        };
+            case 0:
+                currentLevel = Instantiate(level0);
+                break;
+            case 1:
+                currentLevel = Instantiate(level1);
+                break;
+            default:
+                currentLevel = currentLevel;
+                break;
+        }
+        
+        currentLevel.gameManager = this;
+
+        statsScreen.SetLevel(configuration.numberLevel);
         
         levels = new List<bool>();
         CreateLevels();
@@ -47,6 +64,7 @@ public class GameManager : MonoBehaviour
         managerEnemies.DestroyAllEnemies();
         auxPlayer.WinAnimation();
         endCardView.ShowEndCard(hud.GetCoins(), EndCardOptionSelected);
+        statsScreen.SetCoins(hud.GetCoins());
     }
 
     private void EndCardOptionSelected(int discountAmount)
@@ -57,13 +75,19 @@ public class GameManager : MonoBehaviour
     
     private void RestartLevel()
     {
-        currentLevel = configuration.numberLevel switch
+        switch (configuration.numberLevel)
         {
-            0 => Instantiate(level0),
-            1 => Instantiate(level1),
-            _ => currentLevel
-        };
-        
+            case 0:
+                currentLevel = Instantiate(level0);
+                break;
+            case 1:
+                currentLevel = Instantiate(level1);
+                break;
+            default:
+                currentLevel = currentLevel;
+                break;
+        }
+
         levels = new List<bool>();
         CreateLevels();
         if (!levels[0])
@@ -98,12 +122,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void CreateLevels() => levels.Add(false);
+    void CreateLevels()
+    {
+        levels.Add(false);
+    }
 
     void CreateLevel0()
     {
         auxPlayer = Instantiate(player);
+        auxPlayer.gameManager = this;
         managerEnemies = Instantiate(managerEnemies);
+        managerEnemies.gameManager = this;
         managerEnemies.configuration = configuration;
         managerEnemies.hud = hud;
         managerEnemies.positionEnemy = currentLevel.positionEnemy;
@@ -133,9 +162,15 @@ public class GameManager : MonoBehaviour
         currentLevel.CreateProgresBar1();
     }
 
-    public void CreatePlayerPoints() => auxPlayer.CreatePlayerpoint();
+    public void CreatePlayerPoints()
+    {
+        auxPlayer.CreatePlayerpoint();
+    }
 
-    public void CreateLaserShot() => powerUpManager.ShowPowerUp();
+    public void CreateLaserShot()
+    {
+        powerUpManager.ShowPowerUp();
+    }
 
     public void CreateMissile()
     {
@@ -148,5 +183,8 @@ public class GameManager : MonoBehaviour
         brickObstacle.GetComponent<BrickObstacle>().StartDelayAction();
     }
 
-    public void MoveEnemies() => managerEnemies.MoveEnemies();
+    public void MoveEnemies()
+    {
+        managerEnemies.MoveEnemies();
+    }
 }

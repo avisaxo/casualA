@@ -13,6 +13,7 @@ public class PlayerAux : MonoBehaviour
     public Image amount;
     public Player player;
     public bool isPlayerActive;
+    public GameManager gameManager;
 
     private void Start()
     {
@@ -45,6 +46,7 @@ public class PlayerAux : MonoBehaviour
     void Disparar()
     {
         GameObject balaAux = Instantiate(bala, positionCanon.position, Quaternion.identity);
+        balaAux.GetComponent<Bala>().gameManager = gameManager;
         balaAux.GetComponent<Bala>().player = player;
     }
 

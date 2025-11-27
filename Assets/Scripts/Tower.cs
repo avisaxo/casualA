@@ -14,6 +14,7 @@ public class Tower : MonoBehaviour
     public Transform shootPoint; 
     public float bulletSpeed = 30f;
     public bool isTowerActive;
+    public GameManager gameManager;
 
     private void Start()
     {
@@ -28,7 +29,9 @@ public class Tower : MonoBehaviour
         if (isTowerActive)
         {
             GameObject newBulletGO = Instantiate(bulletPrefab, pointFire.position, Quaternion.identity);
+            newBulletGO.GetComponent<Bullet>().gameManager = gameManager;
             GameObject newBulletGO1 = Instantiate(bulletPrefab, pointFire1.position, Quaternion.identity);
+            newBulletGO1.GetComponent<Bullet>().gameManager = gameManager;
 
             Vector3 direction = (targetPosition - pointFire.position).normalized;
             Vector3 direction1 = (targetPosition1 - pointFire1.position).normalized;

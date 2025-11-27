@@ -16,12 +16,14 @@ public class Level0 : MonoBehaviour
     public GameObject MissilePrefab;
     public GameObject explosion;
     public GameObject obstacleBrick;
+    public GameManager gameManager;
 
     public void CreateProgresBar()
     {
         if (auxProgresBar == null)
         {
             auxProgresBar = Instantiate(ProgresBar1, transform);
+            auxProgresBar.GetComponent<ProgressCircular>().gameManager = gameManager;
             auxProgresBar.GetComponent<ProgressCircular>().managerEnemies = managerEnemies;
         }
     }
@@ -31,6 +33,7 @@ public class Level0 : MonoBehaviour
         if (auxProgresBar1 == null)
         {
             auxProgresBar1 = Instantiate(ProgresBar2, transform);
+            auxProgresBar1.GetComponent<ProgressCircular>().gameManager = gameManager;
             auxProgresBar1.GetComponent<ProgressCircular>().managerEnemies = managerEnemies;
         }
     }

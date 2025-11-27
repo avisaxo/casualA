@@ -17,6 +17,7 @@ public class ManagerEnemies : MonoBehaviour
     public bool isCreationActive;
     public Hud hud;
     public Configuration configuration;
+    public GameManager gameManager;
 
     private void Start()
     {
@@ -54,6 +55,7 @@ public class ManagerEnemies : MonoBehaviour
         GameObject enemy = Instantiate(enemyA, posDef, Quaternion.identity);
         enemy.transform.parent = gameObject.transform;
         enemy.GetComponent<Enemy>().player = player;
+        enemy.GetComponent<Enemy>().gameManager = gameManager;
         enemy.GetComponent<Enemy>().managerEnemy = this;
         enemy.GetComponent<Enemy>().hud = hud;
         enemies.Add(enemy);
@@ -71,6 +73,7 @@ public class ManagerEnemies : MonoBehaviour
         //var enemy = Instantiate(enemyBossA, posDef, Quaternion.identity);
         var enemy = Instantiate(enemyBossA, posDef, enemyBossA.transform.rotation);
         enemy.GetComponent<Enemy>().player = player;
+        enemy.GetComponent<Enemy>().gameManager = gameManager;
         enemy.GetComponent<Enemy>().managerEnemy = this;
         enemies.Add(enemy);
     }

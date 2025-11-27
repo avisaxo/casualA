@@ -6,6 +6,7 @@ public class Bala : MonoBehaviour
     private float velocidadDisparo;
     public ParticleSystem explocion;
     public Player player;
+    public GameManager gameManager;
 
     void Start()
     {

@@ -22,6 +22,7 @@ public class ProgressCircular : MonoBehaviour
     // Array para guardar las referencias a los cubos instanciados
     private GameObject[] instantiatedCubes;
     public ManagerEnemies managerEnemies;
+    public GameManager gameManager;
 
     // --- Métodos de Inicio ---
     void Start()
@@ -127,6 +128,7 @@ public class ProgressCircular : MonoBehaviour
         if (auxTower == null)
         {
             auxTower = Instantiate(tower, this.gameObject.transform);
+            auxTower.GetComponent<Tower>().gameManager = gameManager;
             auxTower.GetComponent<Tower>().managerEnemies = managerEnemies;
         }
 
