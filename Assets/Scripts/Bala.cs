@@ -38,6 +38,11 @@ public class Bala : MonoBehaviour
             other.GetComponent<Prize>().RecibirDano();
             Destroy(gameObject);
         }
+        
+        if (other.CompareTag("Brik"))
+        {
+            Destroy(gameObject);
+        }
 
         InstantiateExplocion();
     }

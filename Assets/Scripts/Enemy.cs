@@ -68,19 +68,6 @@ public class Enemy : MonoBehaviour
             Debug.Log("Colisiono contra el missile Enter");
             DestroyEnemy();
         }
-
-        if (other.tag == "Brik" && isBoss)
-        {
-            obstacle = true;
-        }
-    }
-
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Brik" && isBoss)
-        {
-            obstacle = false;
-        }
     }
 
     public void RecibirDano(float damage)

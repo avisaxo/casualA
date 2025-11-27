@@ -12,6 +12,10 @@ public class EnemyObstacle : MonoBehaviour
         {
             enemy.isMove = false;
         }
+        if (other.tag == "Brik" && enemy.isBoss)
+        {
+            enemy.obstacle = true;
+        }
     }
     
     public void OnTriggerExit(Collider other)
@@ -19,6 +23,10 @@ public class EnemyObstacle : MonoBehaviour
         if ((other.tag == "Enemigo" || other.tag == "Brik") && !enemy.isBoss)
         {
             enemy.isMove = true;
+        }
+        if (other.tag == "Brik" && enemy.isBoss)
+        {
+            enemy.obstacle = false;
         }
     }
 }

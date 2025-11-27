@@ -156,7 +156,7 @@ public class Player : MonoBehaviour
 
         if (freeSlotIndex != -1)
         {
-            Debug.Log("Creando player aux en la ranura: " + freeSlotIndex);
+            //Debug.Log("Creando player aux en la ranura: " + freeSlotIndex);
 
             var spawnPosition = points[freeSlotIndex].transform.position;
 

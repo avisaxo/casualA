@@ -38,7 +38,7 @@ public class PowerUpManager : MonoBehaviour
     private void SecondExecutePowerUp()
     {
         brickObject = GameObject.Find("ObstacleBrik");
-        Debug.Log("Se ejecuto el power up");
+        //Debug.Log("Se ejecuto el power up");
         gameManager.BrickActive();
         hud.SubstractCoins(secondCoinsNeeded);
         SecondShowPowerUp();
@@ -60,7 +60,7 @@ public class PowerUpManager : MonoBehaviour
 
     public void FireMissile()
     {
-        Debug.Log("Disparo misiles");
+        //Debug.Log("Disparo misiles");
     }
 
     public void UpdatePowerUp(int coins)
