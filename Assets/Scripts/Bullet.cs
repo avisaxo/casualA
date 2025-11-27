@@ -31,26 +31,28 @@ public class Bullet : MonoBehaviour
     {
         //Debug.Log("Bala colisionó con: " + other.name);
 
-        Destroy(gameObject);
-
         // Si querés afectar al objeto que tocó:
         if (other.CompareTag("EnemigoBoss"))
         {
             other.GetComponent<Enemy>().RecibirDano(0.07f);
+            InstantiateExplocion();
+            Destroy(gameObject);
         }
 
         if (other.CompareTag("Enemigo"))
         {
             other.gameObject.GetComponent<Enemy>().DestroyEnemy();
+            InstantiateExplocion();
             Destroy(other.gameObject);
+            Destroy(gameObject);
         }
         
         if (other.CompareTag("PrizeA"))
         {
             other.GetComponent<Prize>().RecibirDano();
+            InstantiateExplocion();
+            Destroy(gameObject);
         }
-
-        InstantiateExplocion();
     }
     
     public void InstantiateExplocion()

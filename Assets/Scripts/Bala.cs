@@ -22,6 +22,7 @@ public class Bala : MonoBehaviour
         if (other.CompareTag("EnemigoBoss"))
         {
             other.GetComponent<Enemy>().RecibirDano(0.05f);
+            InstantiateExplocion();
             Destroy(gameObject);
         }
 
@@ -29,6 +30,7 @@ public class Bala : MonoBehaviour
         {
             other.gameObject.GetComponent<Enemy>().InstantiateCoin(player);
             other.gameObject.GetComponent<Enemy>().DestroyEnemy();
+            InstantiateExplocion();
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
@@ -36,15 +38,9 @@ public class Bala : MonoBehaviour
         if (other.CompareTag("PrizeA"))
         {
             other.GetComponent<Prize>().RecibirDano();
+            InstantiateExplocion();
             Destroy(gameObject);
         }
-        
-        if (other.CompareTag("Brik"))
-        {
-            Destroy(gameObject);
-        }
-
-        InstantiateExplocion();
     }
 
     public void InstantiateExplocion()
