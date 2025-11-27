@@ -20,7 +20,11 @@ public class Prize : MonoBehaviour
     public float targetY;
     public float stackDropSpeed = 8f;
 
-    private void Start() => targetY = transform.position.y;
+    private void Start()
+    {
+        targetY = transform.position.y;
+        transform.localScale = new Vector3(1,1,1);
+    }
 
     void Update()
     {
@@ -36,7 +40,10 @@ public class Prize : MonoBehaviour
         }
     }
     
-    public void MoveDownStack(float heightToDrop) => targetY -= heightToDrop;
+    public void MoveDownStack(float heightToDrop)
+    {
+        targetY -= heightToDrop;
+    }
 
     public void RecibirDano()
     {

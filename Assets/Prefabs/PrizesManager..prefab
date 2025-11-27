@@ -44,14 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e9a4b2c0dab748c19bf304f895c54b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPrizes: 0
   prizeA: {fileID: 4417975950221518483, guid: c6818f9246d55415791ba99217b76cac, type: 3}
-  initPosition: {fileID: 0}
   finalPosition: {fileID: 0}
-  prizeCount: 0
   player: {fileID: 0}
   prizes: []
-  availablePrizes: 010000000200000003000000
-  isStopPrize: 0
   gameManager: {fileID: 0}
   managerEnemmies: {fileID: 0}
+  configuration: {fileID: 0}
+  prizesModel:
+  - {fileID: 5755239100087000204, guid: 4682f545ace5542a1aa8b703522a9490, type: 3}
+  - {fileID: 7995616527043144406, guid: 00139a6eb3a7c473082b164b5985bf4e, type: 3}
+  - {fileID: 1341616226452001184, guid: e30fc87b573b349f6b56005d60f2b2a0, type: 3}
+  - {fileID: 3593012464062552537, guid: ddf6e29e4701e4ed7b01f09fdf3d32f2, type: 3}

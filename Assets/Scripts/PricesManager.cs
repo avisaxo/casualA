@@ -14,6 +14,7 @@ public class PricesManager : MonoBehaviour
     public ManagerEnemies managerEnemmies;
     private LevelConfig currentLevelConfig;
     public Configuration configuration;
+    public List<GameObject> prizesModel;
     
     private const float StackHeight = 2.09f;
     private const float BaseOffset = 0.5f;
@@ -58,9 +59,10 @@ public class PricesManager : MonoBehaviour
             var spawnY = finalPosition.position.y + BaseOffset + StackHeight * i; 
             var spawnPosition = new Vector3(spawnX, spawnY, spawnZ);
             
-            var prizeObject = Instantiate(prizeA, spawnPosition, Quaternion.Euler(90, 180, 0));
-    
-            prizeObject.transform.parent = gameObject.transform;
+            var prizeObject = Instantiate(prizesModel[i], transform);
+            prizeObject.transform.position = spawnPosition;
+
+            //prizeObject.transform.parent = gameObject.transform;
             var prizeScript = prizeObject.GetComponent<Prize>();
         
             prizeScript.gameManager = gameManager;
@@ -116,7 +118,7 @@ public class PricesManager : MonoBehaviour
         for (var i = 0; i < countPrize; i++)
         {
             var positionCreate = new Vector3(currentFirstPos.x, currentFirstPos.y, currentFirstPos.z + 6);
-            var prize = Instantiate(prizeA, positionCreate, Quaternion.Euler(-90, 0, 0));
+            var prize = Instantiate(prizesModel[i], positionCreate, Quaternion.Euler(-90, 0, 0));
             prize.GetComponent<Prize>().gameManager = gameManager;
             prize.GetComponent<Prize>().player = player;
             prize.GetComponent<Prize>().prizeManager = this;

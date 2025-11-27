@@ -28,14 +28,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4417975950221518483}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
   m_LocalPosition: {x: 2.7, y: 1.3279, z: 6}
-  m_LocalScale: {x: 0.24588767, y: 1, z: 0.1531859}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7067836788940703009}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
 --- !u!33 &7793056602029605913
 MeshFilter:
@@ -100,13 +100,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: {fileID: 5930840263750033671}
-  velocidad: 0
   prizeManager: {fileID: 0}
   player: {fileID: 0}
   gameManager: {fileID: 0}
-  managerEnemies: {fileID: 0}
-  type: 0
   controler: {fileID: 4238429007789657043}
+  type: 0
+  requiredHits: 0
+  targetY: 0
+  stackDropSpeed: 8
 --- !u!65 &-7308990725954090600
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -148,6 +149,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &296900725768352549
 PrefabInstance:
   m_ObjectHideFlags: 0
