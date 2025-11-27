@@ -49,17 +49,19 @@ public class PricesManager : MonoBehaviour
     void CreatePrices()
     {
         var prizeConfigList = currentLevelConfig.PrizeDrops;
-        
+        Debug.Log("Cantidad de premios = " + prizeConfigList.Count);
         for (var i = 0; i < prizeConfigList.Count; i++)
         {
             var config = prizeConfigList[i];
-            
+            Debug.Log("PRIZE CONFIG" + config.PrizeType);
             var spawnX = finalPosition.position.x;
             var spawnZ = finalPosition.position.z;
             var spawnY = finalPosition.position.y + BaseOffset + StackHeight * i; 
             var spawnPosition = new Vector3(spawnX, spawnY, spawnZ);
+
+            GameObject auxPrize = InstancePrize(config.PrizeType);
             
-            var prizeObject = Instantiate(prizesModel[i], transform);
+            var prizeObject = Instantiate(auxPrize, transform);
             prizeObject.transform.position = spawnPosition;
 
             //prizeObject.transform.parent = gameObject.transform;
@@ -75,6 +77,29 @@ public class PricesManager : MonoBehaviour
         
             prizes.Add(prizeScript);
         }
+    }
+
+    public GameObject InstancePrize(PrizesType type)
+    {
+        switch (type)
+        {
+            case PrizesType.Tower:
+                return prizesModel[0];
+                break;
+            case PrizesType.BulletSpeed:
+                return prizesModel[1];
+                break;
+            case PrizesType.PlayerPoints:
+                return prizesModel[2];
+                break;
+            case PrizesType.LaserShot:
+                return prizesModel[3];
+                break;
+            case PrizesType.WinCondition:
+                return prizesModel[4];
+                break;
+        }
+        return prizesModel[0];
     }
 
     public void DestroyPrize(Prize priceDestroy)

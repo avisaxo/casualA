@@ -47,7 +47,12 @@ MonoBehaviour:
   prizeA: {fileID: 4417975950221518483, guid: c6818f9246d55415791ba99217b76cac, type: 3}
   finalPosition: {fileID: 0}
   player: {fileID: 0}
-  prizes: []
+  prizes:
+  - {fileID: 1828122498103087010, guid: 4682f545ace5542a1aa8b703522a9490, type: 3}
+  - {fileID: 2454416600802568425, guid: 00139a6eb3a7c473082b164b5985bf4e, type: 3}
+  - {fileID: 1376119926455701896, guid: e30fc87b573b349f6b56005d60f2b2a0, type: 3}
+  - {fileID: 5801569378208410180, guid: ddf6e29e4701e4ed7b01f09fdf3d32f2, type: 3}
+  - {fileID: 2454416600802568425, guid: 08e723e80374045b8937b5f79c1ecb34, type: 3}
   gameManager: {fileID: 0}
   managerEnemmies: {fileID: 0}
   configuration: {fileID: 0}
