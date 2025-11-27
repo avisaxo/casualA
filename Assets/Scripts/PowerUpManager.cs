@@ -72,7 +72,11 @@ public class PowerUpManager : MonoBehaviour
             firstEnablePowerUpGameObject.SetActive(true);
         }
         else
+        {
+            firstDisabledPowerUpGameObject.SetActive(true);
+            firstEnablePowerUpGameObject.SetActive(false);
             firstPowerUpText.text = coinsLeft.ToString();
+        }
     }
     
     public void SecondUpdatePowerUp(int coins)
@@ -84,6 +88,10 @@ public class PowerUpManager : MonoBehaviour
             secondEnablePowerUpGameObject.SetActive(true);
         }
         else
+        {
             secondPowerUpText.text = coinsLeft.ToString();
+            secondDisabledPowerUpGameObject.SetActive(true);
+            secondEnablePowerUpGameObject.SetActive(false);
+        }
     }
 }

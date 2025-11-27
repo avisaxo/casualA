@@ -4,7 +4,7 @@ using System.Collections; // Importante: Necesitas esto para usar Coroutines
 
 public class BrickObstacle : MonoBehaviour
 {
-    public float delayTime = 30f;
+    public float delayTime = 10f;
     public GameManager gameManager;
     public void StartDelayAction()
     {
