@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ShopView : MonoBehaviour
@@ -30,7 +31,8 @@ public class ShopView : MonoBehaviour
 
     private void Skip()
     {
-        gameObject.SetActive(false);
+        SceneManager.LoadScene(1);
+        //gameObject.SetActive(false);
     }
 
     private void SelectOption(int option)
@@ -68,7 +70,7 @@ public class ShopView : MonoBehaviour
                 
                 Debug.Log($"Descuento exitoso. Nuevo saldo: {currentMoney}");
                 statsScreen.coins -= price;
-                gameObject.SetActive(false);
+                //gameObject.SetActive(false);
             }
             else
                 Debug.LogWarning($"Saldo insuficiente. Requiere ${price}, tiene ${currentMoney}.");

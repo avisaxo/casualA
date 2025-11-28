@@ -44,13 +44,12 @@ public class Enemy : MonoBehaviour
                 gameManager.statsScreen.AddEnemyBossDead();
                 AudioManager.Instance.Play("muerte2");
                 Destroy(gameObject);
-                Debug.Log("🎬 La animación terminó");
             }
         }
 
         if (!isMove && !isBoss)
         {
-            Debug.Log("Se detubo");
+            //Debug.Log("Se detubo");
         }
     }
 
@@ -58,7 +57,6 @@ public class Enemy : MonoBehaviour
     {
         if (other.tag == "Missile")
         {
-            Debug.Log("Colisiono contra el missile Stay");
             DestroyEnemy();
         }
     }
@@ -67,7 +65,6 @@ public class Enemy : MonoBehaviour
     {
         if (other.tag == "Missile")
         {
-            Debug.Log("Colisiono contra el missile Enter");
             DestroyEnemy();
         }
     }
@@ -78,7 +75,6 @@ public class Enemy : MonoBehaviour
         {
             if (isBoss) amount.fillAmount += damage;
 
-            //Debug.Log("damage = " + damage);
 
             if (amount.fillAmount >= 1)
             {
@@ -86,7 +82,6 @@ public class Enemy : MonoBehaviour
                 isMove = false;
                 animator.SetTrigger("Die");
                 managerEnemy.DestroyEnemy(this);
-                //Destroy(gameObject);
             }
         }
     }

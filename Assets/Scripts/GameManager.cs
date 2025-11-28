@@ -131,6 +131,7 @@ public class GameManager : MonoBehaviour
     {
         auxPlayer = Instantiate(player);
         auxPlayer.gameManager = this;
+        auxPlayer.GetComponent<Player>().statsScreen = statsScreen;
         managerEnemies = Instantiate(managerEnemies);
         managerEnemies.gameManager = this;
         managerEnemies.configuration = configuration;

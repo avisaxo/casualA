@@ -841,10 +841,20 @@ MonoBehaviour:
   - {fileID: 4135312665870363948}
   - {fileID: 6957308941037689774}
   winSpeed: 25
+  anticipationTime: 1
+  backwardSpeed: 10
+  gameManager: {fileID: 0}
+  weapons:
+  - {fileID: 2100000, guid: 2e7b11d6712111440834cb098dd5415a, type: 2}
+  - {fileID: 2100000, guid: 746f830c99e00491d9e4601650d0c9c7, type: 2}
+  - {fileID: 2100000, guid: 1af43ac11c7914e96990de11b18cfd2a, type: 2}
+  - {fileID: 2100000, guid: b45f4af0d131d41b09d8bc993c3d8d69, type: 2}
+  soldatBody: {fileID: 503209535253943113}
   tiempoEntreBalas: 0.4
   amount: {fileID: 963515949214386722}
   auxPlayerPrefabs: {fileID: 4849386108906645296, guid: c90b1d43d6d5946a5b4849fb796c5dcf, type: 3}
   isPlayerActive: 0
+  WeaponsType: 0
 --- !u!54 &9218929098362624198
 Rigidbody:
   m_ObjectHideFlags: 0

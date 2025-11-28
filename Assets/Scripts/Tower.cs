@@ -50,6 +50,7 @@ public class Tower : MonoBehaviour
     
     void MiFuncionRepetitiva()
     {
-        ShootInDirection(managerEnemies.enemies[0].transform.position, managerEnemies.enemies[1].transform.position);
+        if(managerEnemies.enemies.Count > 1)
+            ShootInDirection(managerEnemies.enemies[0].transform.position, managerEnemies.enemies[1].transform.position);
     }
 }

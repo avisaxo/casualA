@@ -12,6 +12,7 @@ public class StatsScreen : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
+        weaponType = 0;
         SetInstance();
     }
 
@@ -59,5 +60,15 @@ public class StatsScreen : MonoBehaviour
     public int GetCountEnemiesDead()
     {
         return countEnemiesDead;
+    }
+    
+    public void SetWeaponsType(int type)
+    {
+        weaponType = type;
+    }
+    
+    public int GetWeaponsType()
+    {
+        return weaponType;
     }
 }

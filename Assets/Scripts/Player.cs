@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     [Tooltip("Velocidad suave hacia atrás")]
     public float backwardSpeed = 10f;
     public GameManager gameManager;
+    [SerializeField] private List<Material> weapons;
+    public GameObject soldatBody;
+    public StatsScreen statsScreen;
 
     private bool isWinning = false;
 
@@ -29,11 +32,25 @@ public class Player : MonoBehaviour
     public GameObject auxPlayerPrefabs;
     public bool isPlayerActive;
 
+    public int WeaponsType;
+
     private void Start()
     {
         isPlayerActive = true;
         //playerPoints = new List<GameObject>();
         activeHelpers = new PlayerAux[points.Count];
+        SelectArmored();
+    }
+
+    public void SelectArmored()
+    {
+        int weaponNumber = statsScreen.GetWeaponsType();
+        soldatBody.GetComponent<SkinnedMeshRenderer>().material = weapons[weaponNumber];
+    }
+
+    public void SetWeaponsType(int weaponsNumber)
+    {
+        WeaponsType = weaponsNumber;
     }
 
     void Update()

@@ -49,11 +49,9 @@ public class PricesManager : MonoBehaviour
     void CreatePrices()
     {
         var prizeConfigList = currentLevelConfig.PrizeDrops;
-        Debug.Log("Cantidad de premios = " + prizeConfigList.Count);
         for (var i = 0; i < prizeConfigList.Count; i++)
         {
             var config = prizeConfigList[i];
-            Debug.Log("PRIZE CONFIG" + config.PrizeType);
             var spawnX = finalPosition.position.x;
             var spawnZ = finalPosition.position.z;
             var spawnY = finalPosition.position.y + BaseOffset + StackHeight * i; 
@@ -110,6 +108,7 @@ public class PricesManager : MonoBehaviour
         Destroy(priceDestroy.gameObject);
         prizes.Remove(priceDestroy);
 
+        Debug.Log("prizes.Count = " + prizes.Count);
         for (var i = removedIndex; i < prizes.Count; i++)
         {
             var prizeToMove = prizes[i];

@@ -7,7 +7,6 @@ public class EnemyObstacle : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Detecto el trigger OBSTACLE");
         if ((other.tag == "Enemigo" || other.tag == "Brik") && !enemy.isBoss)
         {
             enemy.isMove = false;
