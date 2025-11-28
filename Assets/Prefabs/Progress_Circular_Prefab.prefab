@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2350884144117423239}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.23, y: 0, z: -1.93}
+  m_LocalPosition: {x: 2.23, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -53,6 +53,8 @@ MonoBehaviour:
   auxTower: {fileID: 0}
   whiteMaterial: {fileID: 2100000, guid: 2015c659a947a483fbdb496c76022224, type: 2}
   greenMaterial: {fileID: 2100000, guid: 5e8696f82a7854f9bbf919118c467989, type: 2}
+  managerEnemies: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!136 &6048720233986052521
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class ParabolicMover : MonoBehaviour
     {
         startPosition = transform.position;
         lastPosition = startPosition;
+        AudioManager.Instance.Play("MissileLanza");
         StopAllCoroutines(); 
         StartCoroutine(MoveAlongParabola());
     }
@@ -45,6 +46,7 @@ public class ParabolicMover : MonoBehaviour
         }
         transform.position = endPosition;
         label.CreateExplocionMissile(targetPoint);
+        AudioManager.Instance.Play("Explosion");
         DestroidMissile();
     }
     

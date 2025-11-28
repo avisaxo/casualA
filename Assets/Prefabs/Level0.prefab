@@ -5491,6 +5491,7 @@ MonoBehaviour:
   MissilePrefab: {fileID: 112407147210004027, guid: a392579af820542fb862c99bcaf69d1e, type: 3}
   explosion: {fileID: 6315533940656040425, guid: 4cfae64ef8a074862b9dbe71d88dc40a, type: 3}
   obstacleBrick: {fileID: 11309915946676334}
+  gameManager: {fileID: 0}
 --- !u!1001 &5441114844301270900
 PrefabInstance:
   m_ObjectHideFlags: 0

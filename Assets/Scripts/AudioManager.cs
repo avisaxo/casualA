@@ -22,23 +22,17 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        // 🛑 LÓGICA HÍBRIDA
         if (s.type == SoundType.SFX)
         {
-            // Usamos la solución que YA SABEMOS que funciona: PlayClipAtPoint
             AudioSource.PlayClipAtPoint(s.clip, Vector3.zero, s.volume);
-            //Debug.Log($"Éxito: SFX {name} reproducido con PlayClipAtPoint.");
         }
         else if (s.type == SoundType.Music)
         {
-            // Usamos el AudioSource mapeado manualmente (ideal para bucles y control)
             if (s.source != null)
             {
-                // Aseguramos que el clip y volumen se asignen por si acaso
                 s.source.clip = s.clip; 
                 s.source.volume = s.volume;
                 s.source.Play(); 
-                //Debug.Log($"Éxito: Música {name} reproducida con AudioSource fijo.");
             }
             else
             {
@@ -47,7 +41,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // Nota: El método Stop() solo funcionará para la música (SoundType.Music)
     public void Stop(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
