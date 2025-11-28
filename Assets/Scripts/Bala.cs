@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Bala : MonoBehaviour
@@ -7,14 +8,23 @@ public class Bala : MonoBehaviour
     public ParticleSystem explocion;
     public Player player;
     public GameManager gameManager;
+    [SerializeField] private List<Material> bullets;
+    public int bulletType;
+    public GameObject planeBullet;
 
     void Start()
     {
+        SetBulletType();
         velocidadDisparo = 30f;
         rb.AddForce(transform.forward * velocidadDisparo, ForceMode.Impulse);
         Destroy(gameObject, 3.2f);
     }
-    
+
+    public void SetBulletType()
+    {
+        planeBullet.GetComponent<MeshRenderer>().material = bullets[bulletType];
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Bala colisionó con: " + other.name);

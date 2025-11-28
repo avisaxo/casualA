@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
         isPlayerActive = true;
         //playerPoints = new List<GameObject>();
         activeHelpers = new PlayerAux[points.Count];
+        WeaponsType = statsScreen.GetWeaponsType();
         SelectArmored();
     }
 
@@ -137,6 +138,7 @@ public class Player : MonoBehaviour
         var balaAux = Instantiate(bala, positionCanon.position, Quaternion.identity);
         balaAux.GetComponent<Bala>().gameManager = gameManager;
         balaAux.GetComponent<Bala>().player = this;
+        balaAux.GetComponent<Bala>().bulletType = WeaponsType;
         AudioManager.Instance.Play("Disparo1");
     }
 

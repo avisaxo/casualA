@@ -124,6 +124,14 @@ MonoBehaviour:
   rb: {fileID: 609101811371076386}
   explocion: {fileID: 1178487740648058369, guid: f61c6a118783b47f79c9b9d987c4201d, type: 3}
   player: {fileID: 0}
+  gameManager: {fileID: 0}
+  bullets:
+  - {fileID: 2100000, guid: f06e063f3475ca040b4260b5744d5745, type: 2}
+  - {fileID: 2100000, guid: baccc00f973d94765a32dea0a6830e62, type: 2}
+  - {fileID: 2100000, guid: a4a7cc2fb9c52496d89b2712a80de352, type: 2}
+  - {fileID: 2100000, guid: d0b5f88f5d5a4403e9f282dde73e062b, type: 2}
+  bulletType: 0
+  planeBullet: {fileID: 7293165758571797749}
 --- !u!54 &609101811371076386
 Rigidbody:
   m_ObjectHideFlags: 0
