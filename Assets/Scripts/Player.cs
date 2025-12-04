@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Menu;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,8 +9,6 @@ public class Player : MonoBehaviour
     public GameObject bala;
     public Transform positionCanon;
     public List<GameObject> points;
-    // private int indexPoints = 0;
-    // public List<GameObject> playerPoints;
     private PlayerAux[] activeHelpers;
     [Header("Configuración de Victoria")]
     [Tooltip("Velocidad a la que el jugador se 'dispara' hacia adelante al ganar.")]
@@ -26,32 +25,26 @@ public class Player : MonoBehaviour
     private bool isWinning = false;
 
     private float velocidad = 5f;
-    public float tiempoEntreBalas = 0.4f;
     private float tiempoProximoDisparo = 0f;
     public Image amount;
     public GameObject auxPlayerPrefabs;
     public bool isPlayerActive;
 
-    public int WeaponsType;
+    private IWeapon weapon;
 
     private void Start()
     {
         isPlayerActive = true;
         //playerPoints = new List<GameObject>();
         activeHelpers = new PlayerAux[points.Count];
-        WeaponsType = statsScreen.GetWeaponsType();
+        weapon = statsScreen.GetWeapons();
         SelectArmored();
     }
 
-    public void SelectArmored()
+    private void SelectArmored()
     {
-        int weaponNumber = statsScreen.GetWeaponsType();
+        var weaponNumber = weapon.GetBulletType();
         soldatBody.GetComponent<SkinnedMeshRenderer>().material = weapons[weaponNumber];
-    }
-
-    public void SetWeaponsType(int weaponsNumber)
-    {
-        WeaponsType = weaponsNumber;
     }
 
     void Update()
@@ -115,7 +108,7 @@ public class Player : MonoBehaviour
             if (Time.time >= tiempoProximoDisparo)
             {
                 Disparar();
-                tiempoProximoDisparo = Time.time + tiempoEntreBalas;
+                tiempoProximoDisparo = Time.time + weapon.GetReloadTime();
             }
         }
         else
@@ -129,8 +122,8 @@ public class Player : MonoBehaviour
 
     public void IncrementCreationBala()
     {
-        if(tiempoEntreBalas >= 0.2f)
-            tiempoEntreBalas = tiempoEntreBalas - 0.1f;
+        if(weapon.GetReloadTime() >= 0.2f)
+            weapon.SetReloadTime(weapon.GetReloadTime() - 0.1f);
     }
 
     void Disparar()
@@ -138,7 +131,7 @@ public class Player : MonoBehaviour
         var balaAux = Instantiate(bala, positionCanon.position, Quaternion.identity);
         balaAux.GetComponent<Bala>().gameManager = gameManager;
         balaAux.GetComponent<Bala>().player = this;
-        balaAux.GetComponent<Bala>().bulletType = WeaponsType;
+        balaAux.GetComponent<Bala>().bulletType = weapon.GetBulletType();
         AudioManager.Instance.Play("Disparo1");
     }
 

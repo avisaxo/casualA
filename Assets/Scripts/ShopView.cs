@@ -1,6 +1,8 @@
+using Menu;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Weapons;
 
 public class ShopView : MonoBehaviour
 {
@@ -41,15 +43,15 @@ public class ShopView : MonoBehaviour
         switch (option)
         {
             case 1:
-                statsScreen.weaponType = 1;
+                statsScreen.Weapon = new WeaponOne();
                 Discount(optionText_1);
                 break;
             case 2:
-                statsScreen.weaponType = 2;
+                statsScreen.Weapon = new WeaponTwo();
                 Discount(optionText_2);
                 break;
             default:
-                statsScreen.weaponType = 3;
+                statsScreen.Weapon = new WeaponThree();
                 Discount(optionText_3);
                 break;
         }
