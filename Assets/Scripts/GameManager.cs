@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Configuration configuration;
     public StatsScreen statsScreen;
     private Player auxPlayer;
-    private float tiempoCreationFinish = 200f;
+    public float tiempoCreationFinish = 200f;
     private float tiempoActual = 0f;
 
     private void Awake()
@@ -104,17 +104,18 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("Time = " + Time.time + " Finish = " + tiempoCreationFinish);
         if (Time.time >= tiempoCreationFinish)
         {
             managerEnemies.isCreationActive = false;
             auxPlayer.isPlayerActive = false;
-            //hud.SetTimeBar(1f);
+            hud.barTimer.fillAmount = 1;
         }
         else
         {
             tiempoActual += Time.deltaTime;
             var progress = tiempoActual / tiempoCreationFinish;
-            //hud.SetTimeBar(progress);
+            hud.barTimer.fillAmount = tiempoActual / tiempoCreationFinish;
         }
 
         if (Input.GetKeyDown(KeyCode.M))
