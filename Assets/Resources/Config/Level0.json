@@ -9,27 +9,27 @@
   "PrizeDrops": [
     {
       "PrizeType": 2,
-      "RequiredHits": 5,
+      "RequiredHits": 10,
       "IsFinalPrize": false
     },
     {
       "PrizeType": 1,
-      "RequiredHits": 1,
+      "RequiredHits": 15,
       "IsFinalPrize": false
     },
     {
       "PrizeType": 2,
-      "RequiredHits": 2,
+      "RequiredHits": 10,
       "IsFinalPrize": false
     },
     {
       "PrizeType": 2,
-      "RequiredHits": 4,
+      "RequiredHits": 10,
       "IsFinalPrize": false
     },
     {
       "PrizeType": 1,
-      "RequiredHits": 8,
+      "RequiredHits": 20,
       "IsFinalPrize": false
     },
     {
@@ -44,7 +44,7 @@
     },
     {
       "PrizeType": 4,
-      "RequiredHits": 7,
+      "RequiredHits": 20,
       "IsFinalPrize": true
     }
   ]

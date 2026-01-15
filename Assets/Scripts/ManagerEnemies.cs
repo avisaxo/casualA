@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -7,9 +6,9 @@ public class ManagerEnemies : MonoBehaviour
 {
     public GameObject enemyA;
     public GameObject enemyBossA;
-    private float tiempoProximoCreacion = 0.2f;
+    private float tiempoProximoCreacion = 0.1f;
     private float tiempoProximoCreacionBoss = 10f;
-    private float tiempoEntreEnemies = 0.2f;
+    private float tiempoEntreEnemies = 0.1f;
     private float tiempoEntreEnemiesBoss = 10f;
     public Transform positionEnemy;
     public Player player;
@@ -18,7 +17,6 @@ public class ManagerEnemies : MonoBehaviour
     public Hud hud;
     public Configuration configuration;
     public GameManager gameManager;
-
     private void Start()
     {
         isCreationActive = true;

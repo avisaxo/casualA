@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     [SerializeField] private List<Material> weapons;
     public GameObject soldatBody;
     public StatsScreen statsScreen;
+    public Animator animator;
 
     private bool isWinning = false;
 
@@ -93,17 +94,34 @@ public class Player : MonoBehaviour
         
         if (isPlayerActive)
         {
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
+            {
+                animator.SetTrigger("Run");
+            } else if (!Input.GetKey(KeyCode.A) || !Input.GetKey(KeyCode.D) || !Input.GetKey(KeyCode.W) ||
+                       !Input.GetKey(KeyCode.S))
+            {
+                animator.SetTrigger("Idle");
+            }
+
             if (Input.GetKey(KeyCode.A) && transform.position.x > -4f)
+            {
                 transform.Translate(Vector3.left * velocidad * Time.deltaTime);
+            }
 
             if (Input.GetKey(KeyCode.D) && transform.position.x < 4f)
+            {
                 transform.Translate(Vector3.right * velocidad * Time.deltaTime);
+            }
 
             if (Input.GetKey(KeyCode.W) && transform.position.z <= 1f)
+            {
                 transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
+            }
 
             if (Input.GetKey(KeyCode.S) && transform.position.z >= -1f)
+            {
                 transform.Translate(Vector3.forward * -velocidad * Time.deltaTime);
+            }
 
             if (Time.time >= tiempoProximoDisparo)
             {
