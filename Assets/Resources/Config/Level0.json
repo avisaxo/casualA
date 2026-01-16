@@ -14,37 +14,37 @@
     },
     {
       "PrizeType": 1,
-      "RequiredHits": 15,
+      "RequiredHits": 30,
       "IsFinalPrize": false
     },
     {
       "PrizeType": 2,
-      "RequiredHits": 10,
+      "RequiredHits": 40,
       "IsFinalPrize": false
     },
     {
       "PrizeType": 2,
-      "RequiredHits": 10,
+      "RequiredHits": 40,
       "IsFinalPrize": false
     },
     {
       "PrizeType": 1,
-      "RequiredHits": 20,
+      "RequiredHits": 60,
       "IsFinalPrize": false
     },
     {
       "PrizeType": 0,
-      "RequiredHits": 16,
+      "RequiredHits": 70,
       "IsFinalPrize": false
     },
     {
       "PrizeType": 3,
-      "RequiredHits": 3,
+      "RequiredHits": 90,
       "IsFinalPrize": false
     },
     {
       "PrizeType": 4,
-      "RequiredHits": 20,
+      "RequiredHits": 200,
       "IsFinalPrize": true
     }
   ]

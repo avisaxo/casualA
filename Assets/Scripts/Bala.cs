@@ -32,7 +32,7 @@ public class Bala : MonoBehaviour
         // Si querés afectar al objeto que tocó:
         if (other.CompareTag("EnemigoBoss"))
         {
-            other.GetComponent<Enemy>().RecibirDano(0.05f);
+            other.GetComponent<Enemy>().RecibirDano(0.01f);
             InstantiateExplocion();
             Destroy(gameObject);
         }

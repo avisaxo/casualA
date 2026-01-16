@@ -139,6 +139,7 @@ public class GameManager : MonoBehaviour
         managerEnemies.configuration = configuration;
         managerEnemies.hud = hud;
         managerEnemies.positionEnemy = currentLevel.positionEnemy;
+        managerEnemies.areaDeCreacion = currentLevel.areaDeCreacion;
         currentLevel.managerEnemies = managerEnemies;
         // Price Manager create
         if (configuration.numberLevel != 1)
@@ -167,7 +168,7 @@ public class GameManager : MonoBehaviour
 
     public void CreatePlayerPoints()
     {
-        auxPlayer.CreatePlayerpoint();
+        auxPlayer.CreatePlayerPoint();
     }
 
     public void CreateLaserShot()

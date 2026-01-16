@@ -17,6 +17,7 @@ public class Level0 : MonoBehaviour
     public GameObject explosion;
     public GameObject obstacleBrick;
     public GameManager gameManager;
+    public BoxCollider areaDeCreacion;
 
     public void CreateProgresBar()
     {

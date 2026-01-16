@@ -17,10 +17,16 @@ public class ManagerEnemies : MonoBehaviour
     public Hud hud;
     public Configuration configuration;
     public GameManager gameManager;
+    
+    public BoxCollider areaDeCreacion; // Arrastra un BoxCollider aquí
+    public int cantidadInicial;   // Cuántos habrá al empezar
+    
     private void Start()
     {
+        cantidadInicial = 150;
         isCreationActive = true;
         enemies = new List<GameObject>();
+        PoblarAreaInicial();
     }
 
     void Update()
@@ -40,12 +46,38 @@ public class ManagerEnemies : MonoBehaviour
             }
         }
     }
+    
+    void PoblarAreaInicial()
+    {
+        // Obtenemos los límites del BoxCollider
+        Bounds bounds = areaDeCreacion.bounds;
+
+        for (int i = 0; i < cantidadInicial; i++)
+        {
+            // Generamos una posición aleatoria dentro del cubo
+            float x = Random.Range(bounds.min.x, bounds.max.x);
+            float y = positionEnemy.position.y; // Mantener la altura de tus otros enemigos
+            float z = Random.Range(bounds.min.z, bounds.max.z);
+
+            Vector3 posAleatoria = new Vector3(x, y, z);
+        
+            // Usamos una versión modificada de tu función Crear o llamamos a Crear directamente
+            GameObject enemy = Instantiate(enemyA, posAleatoria, Quaternion.identity);
+            enemy.transform.parent = gameObject.transform;
+            enemy.GetComponent<Enemy>().player = player;
+            enemy.GetComponent<Enemy>().gameManager = gameManager;
+            enemy.GetComponent<Enemy>().managerEnemy = this;
+            enemy.GetComponent<Enemy>().hud = hud;
+            enemies.Add(enemy);
+        }
+        areaDeCreacion.gameObject.SetActive(false);
+    }
 
     void Crear()
     {
         float randomPos = 0.0f;
         if(configuration.numberLevel == 0)
-            randomPos = Random.Range(-4f, 1f);
+            randomPos = Random.Range(-4f, 6f);
         else if(configuration.numberLevel == 1)
             randomPos = Random.Range(-4f, 4f);
         
@@ -63,7 +95,7 @@ public class ManagerEnemies : MonoBehaviour
     {
         float randomPos = 0.0f;
         if(configuration.numberLevel == 0)
-            randomPos = Random.Range(-4f, 1f);
+            randomPos = Random.Range(-4f, 6f);
         else if(configuration.numberLevel == 1)
             randomPos = Random.Range(-4f, 4f);
         

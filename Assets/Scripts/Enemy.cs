@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         isMove = true;
-        velocidad = isBoss ? 2.0f : 1.6f;
+        velocidad = isBoss ? 2.0f : 2.0f;
         obstacle = false;
     }
 

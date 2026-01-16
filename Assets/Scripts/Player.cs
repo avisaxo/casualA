@@ -22,6 +22,13 @@ public class Player : MonoBehaviour
     public GameObject soldatBody;
     public StatsScreen statsScreen;
     public Animator animator;
+    
+    public float densidad; // Qué tan pegados están entre sí
+    public float anguloDeGiro = 137.5f;
+    private int totalInstanciados = 0;
+    private List<GameObject> personajesActivos = new List<GameObject>();
+    public float velocidadReacomodo;
+    private int countByInstancePlayers;
 
     private bool isWinning = false;
 
@@ -35,6 +42,9 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        densidad = 0.4f;
+        velocidadReacomodo = 5f;
+        countByInstancePlayers = 5;
         isPlayerActive = true;
         //playerPoints = new List<GameObject>();
         activeHelpers = new PlayerAux[points.Count];
@@ -108,7 +118,7 @@ public class Player : MonoBehaviour
                 transform.Translate(Vector3.left * velocidad * Time.deltaTime);
             }
 
-            if (Input.GetKey(KeyCode.D) && transform.position.x < 4f)
+            if (Input.GetKey(KeyCode.D) && transform.position.x < 11f)
             {
                 transform.Translate(Vector3.right * velocidad * Time.deltaTime);
             }
@@ -136,6 +146,9 @@ public class Player : MonoBehaviour
                 if(playerAux != null) playerAux.isPlayerActive = false;
             }
         }
+        
+        if (Input.GetKeyDown(KeyCode.B)) SumarPersonaje();
+        if (Input.GetKeyDown(KeyCode.V)) EliminarPersonaje();
     }
 
     public void IncrementCreationBala()
@@ -174,35 +187,89 @@ public class Player : MonoBehaviour
         if (amount.fillAmount >= 1) Destroy(gameObject);
     }
 
-    public void CreatePlayerpoint()
+    public void CreatePlayerPoint()
     {
-        var freeSlotIndex = -1;
-        for (var i = 0; i < activeHelpers.Length; i++)
+        for (int i = 0; i < countByInstancePlayers; i++)
         {
-            if (activeHelpers[i] == null)
-            {
-                freeSlotIndex = i; 
-                break;
-            }
-        }
+            // Usamos totalInstanciados para calcular la posición.
+            // Al no resetearse, el 'radio' siempre será más grande que el anterior.
+            float radio = densidad * Mathf.Sqrt(totalInstanciados);
+            float theta = totalInstanciados * anguloDeGiro * Mathf.Deg2Rad;
 
-        if (freeSlotIndex != -1)
-        {
-            //Debug.Log("Creando player aux en la ranura: " + freeSlotIndex);
+            float x = Mathf.Cos(theta) * radio;
+            float z = Mathf.Sin(theta) * radio;
 
-            var spawnPosition = points[freeSlotIndex].transform.position;
+            Vector3 posicionFinal = transform.position + new Vector3(x, 0, z);
 
-            var auxPlayer = Instantiate(auxPlayerPrefabs, spawnPosition, Quaternion.identity);
-            auxPlayer.GetComponent<PlayerAux>().gameManager = gameManager;
+            var auxPlayer = Instantiate(auxPlayerPrefabs, posicionFinal, transform.rotation);
             var auxScript = auxPlayer.GetComponent<PlayerAux>();
-            
             auxScript.player = this;
             auxPlayer.transform.parent = transform;
-            activeHelpers[freeSlotIndex] = auxScript;
+            
+            personajesActivos.Add(auxPlayer);
+
+            // Aumentamos el contador global
+            totalInstanciados++;
         }
-        else
+    }
+    
+    public void SumarPersonaje()
+    {
+        // Usamos totalInstanciados para calcular la posición.
+        // Al no resetearse, el 'radio' siempre será más grande que el anterior.
+        float radio = densidad * Mathf.Sqrt(totalInstanciados);
+        float theta = totalInstanciados * anguloDeGiro * Mathf.Deg2Rad;
+
+        float x = Mathf.Cos(theta) * radio;
+        float z = Mathf.Sin(theta) * radio;
+
+        Vector3 posicionFinal = transform.position + new Vector3(x, 0, z);
+
+        var auxPlayer = Instantiate(auxPlayerPrefabs, posicionFinal, transform.rotation);
+        var auxScript = auxPlayer.GetComponent<PlayerAux>();
+        auxScript.player = this;
+        auxPlayer.transform.parent = transform;
+            
+        personajesActivos.Add(auxPlayer);
+
+        // Aumentamos el contador global
+        totalInstanciados++;
+        ActualizarPosiciones();
+    }
+
+    public void EliminarPersonaje()
+    {
+        if (personajesActivos.Count > 0)
         {
-            Debug.LogWarning("¡Máximo de 'PlayerPoints' alcanzado! No hay ranuras libres.");
+            GameObject aEliminar = personajesActivos[personajesActivos.Count - 1];
+            personajesActivos.Remove(aEliminar);
+            totalInstanciados--;
+            Destroy(aEliminar);
+            ActualizarPosiciones();
+        }
+    }
+    
+    void ActualizarPosiciones()
+    {
+        for (int i = 0; i < personajesActivos.Count; i++)
+        {
+            if (personajesActivos[i] == null) continue;
+
+            // Calculamos la posición ideal en la espiral para el índice 'i'
+            float radio = densidad * Mathf.Sqrt(i);
+            float theta = i * 137.5f * Mathf.Deg2Rad;
+
+            float x = Mathf.Cos(theta) * radio;
+            float z = Mathf.Sin(theta) * radio;
+
+            Vector3 posicionObjetivo = transform.position + new Vector3(x, 0, z);
+
+            // Movemos el personaje suavemente (Lerp) hacia su nueva posición
+            personajesActivos[i].transform.position = Vector3.Lerp(
+                personajesActivos[i].transform.position, 
+                posicionObjetivo, 
+                Time.deltaTime * velocidadReacomodo
+            );
         }
     }
 
